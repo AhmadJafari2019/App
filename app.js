@@ -10,18 +10,25 @@ let budgetController = (function() {
 
 // UI CONTROLLER.
 let UIController = (function() {
+    let DOMstrings = {
+        inputType: '.add__type',
+        inputDescription: '.add__description',
+        inputValue: '.add__value',
+        inputBtn: '.add__btn',
 
+    }
     return {
         getInput: function() {
             return {
-                type: document.querySelector('.add__type').value, // Will be either inc or exp
-                description: document.querySelector('.add__description').value,
-                value: document.querySelector('.add__value').value,
+                type: document.querySelector(DOMstrings.inputType).value, // Will be either inc or exp
+                description: document.querySelector(DOMstrings.inputDescription).value,
+                value: document.querySelector(DOMstrings.inputValue).value,
             };
-
-
+        },
+        getDOMstrings: function() {
+            return DOMstrings;
         }
-    }
+    };
 })();
 
 
@@ -29,10 +36,12 @@ let UIController = (function() {
 
 
 //GLOBAL APP CONTROLLER.
-let controller = (function(budgetCtl, UICtl) {
+let controller = (function(budgetCtrl, UICtrl) {
+    let DOM = UICtrl.getDOMstrings();
+
     let ctrlAddItem = function() {
         // 1. Get the input data.
-        let input = UICtl.getInput();
+        let input = UICtrl.getInput();
         console.log(input);
         // 2. Add the item to the budget controller.
 
@@ -43,7 +52,7 @@ let controller = (function(budgetCtl, UICtl) {
         // 5. Display the budget on the UI.
 
     }
-    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
 
     document.addEventListener('keypress', function(event) {
         if (event.keyCode === 13 || event.which === 13) {
