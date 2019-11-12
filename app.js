@@ -3,7 +3,28 @@
 // Data Encapsulation allows us to hide the implementation details from a specific module  from outside the scope.
 // BUDGET CONTROLLER
 let budgetController = (function() {
-    //  some code 
+    // Store the inc and Exp in the BudgetController through a constructor function 
+    let Expense = function(id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    }
+
+    let Income = function(id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    }
+    let data = {
+        allItems: {
+            exp: [],
+            inc: [],
+        },
+        totals: {
+            exp: 0,
+            inc: 0,
+        }
+    };
 })();
 
 
