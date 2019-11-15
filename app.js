@@ -131,7 +131,7 @@ let UIController = (function() {
             }
 
             // Replace the placeholder with some actual data.
-            newHtml = html.replace('%id%, obj.id');
+            newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%description%', obj.description);
             newHtml = newHtml.replace('%value%', obj.value);
 
@@ -223,7 +223,13 @@ let controller = (function(budgetCtrl, UICtrl) {
     };
 
     let ctrlDeleteItem = function(event) {
-        console.log(event.target.parentNode.parentNode.parentNode.parentNode.id);
+        let itemID, splitID, type, ID;
+        itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
+        if (itemID) {
+            splitID = itemID.split('-');
+            type = splitID[0];
+            ID = splitID[1];
+        }
     };
     return {
         init: function() {
