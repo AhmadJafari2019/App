@@ -8,7 +8,12 @@ let budgetController = (function() {
         this.id = id;
         this.description = description;
         this.value = value;
+        this.percentage = -1;
+    };
 
+    // Create the object prototype for the Expense Constructor.
+    Expense.prototype.calcPercentages = function(totalIncome) {
+        this.percentage = Math.round((this.value / totalIncome) * 100);
     };
 
     let Income = function(id, description, value) {
@@ -97,7 +102,6 @@ let budgetController = (function() {
         calculatePercentages: function() {
 
         },
-
 
         getBudget: function() {
             return {
